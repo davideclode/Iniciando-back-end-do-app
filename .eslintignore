@@ -1,0 +1,4 @@
+# O ESLint será ignorado nos arquivos abaixo
+/*.js
+node_modules
+dist
