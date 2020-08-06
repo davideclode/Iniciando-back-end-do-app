@@ -1,4 +1,4 @@
-import {Router } from 'express';
+import { Router } from 'express';
 // Vamos importar o arquivo/a rota appointments.routes.ts
 import appointmentsRouter from './appointments.routes';
 // Vamos importar o arquivo/a rota users.routes.ts aqui

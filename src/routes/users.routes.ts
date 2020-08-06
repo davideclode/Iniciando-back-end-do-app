@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 
 // Temos que importar o CreateUsersService.ts aqui
 import CreateUserService from '../services/CreateUserService';
@@ -25,11 +25,12 @@ usersRouter.post('/', async (request, response) => {
     // Vamos deletar informações do password do usuário que acabou de ser criado
     delete user.password;
 
-
     return response.json(user);
     // return response.json(appointment);
   } catch (err) {
-    return response.status(400).json( {error: err.message} );
+    return response.status(400).json({
+      error: err.message,
+    });
   }
 });
 

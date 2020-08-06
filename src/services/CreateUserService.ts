@@ -14,16 +14,16 @@ interface Request {
 class CreateUserService {
   // Aqui teremos um único método chamado "execute".
   // Como o nosso método aqui é o "CreateUserSerce" então o retorno é o User.
-  public async execute({ name, email, password }: Request ): Promise<User> {
+  public async execute({ name, email, password }: Request): Promise<User> {
     // Aqui dentro vamos fazer a criação do usuário
 
     // Primeiro precisamos pegar o User importado
     const usersRepository = getRepository(User);
     // Não pode ter emails duplicados
     const checkUserExists = await usersRepository.findOne({
-      where: {email: email},
-    })
-    if(checkUserExists){
+      where: { email }, // Poderia ser where: {email: email}
+    });
+    if (checkUserExists) {
       throw new Error('Email address already used!!!');
     }
 
@@ -42,7 +42,6 @@ class CreateUserService {
 
     return user;
   }
-
 }
 
 export default CreateUserService;

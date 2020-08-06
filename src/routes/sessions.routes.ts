@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 // Temos que importar o AuthenticateUsersService.ts aqui
 import AuthenticateUserService from '../services/AuthenticateUserService';
 
@@ -9,23 +9,23 @@ const sessionsRouter = Router();
 sessionsRouter.post('/', async (request, response) => {
   try {
     // Vamos precisar de email e senha para fazer a autenticação.
-    const { email, password  } = request.body;
+    const { email, password } = request.body;
 
     // Aqui, vamos instanciar o AuthenticateUserService
     const authenticateUser = new AuthenticateUserService();
 
     // Pegando agora a resposta. // Vamos deletar informações do password do usuário que acabou de ser criado
-    const { user } = await authenticateUser.execute({
-        email,
-        password,
+    const { user, token } = await authenticateUser.execute({
+      email,
+      password,
     });
 
     // Deletando informações do password
     delete user.password;
 
-    return response.json({user});
+    return response.json({ user, token });
   } catch (err) {
-    return response.status(400).json( {error: err.message} );
+    return response.status(400).json({ error: err.message });
   }
 });
 

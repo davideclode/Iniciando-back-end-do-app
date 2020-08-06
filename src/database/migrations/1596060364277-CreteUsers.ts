@@ -1,51 +1,49 @@
-import { id } from "date-fns/locale";
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { id } from 'date-fns/locale';
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export default class CreteUsers1596060364277 implements MigrationInterface {
+  public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.createTable(
+      new Table({
+        name: 'users',
+        columns: [
+          {
+            name: 'id',
+            type: 'uuid',
+            isPrimary: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
+          },
+          {
+            name: 'name',
+            type: 'varchar',
+            // isNullable: false, /* Por padrão isso já é false */
+          },
+          {
+            name: 'email',
+            type: 'varchar',
+            isUnique: true,
+          },
+          {
+            name: 'password',
+            type: 'varchar',
+          },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+        ],
+      }),
+    );
+  }
 
-    public async up(queryRunner: QueryRunner): Promise<void> {
-      await queryRunner.createTable(
-        new Table({
-          name: 'users',
-          columns: [
-            {
-              name: 'id',
-              type: 'uuid',
-              isPrimary: true,
-              generationStrategy: 'uuid',
-              default: 'uuid_generate_v4()',
-            },
-            {
-              name: 'name',
-              type: 'varchar',
-              // isNullable: false, /* Por padrão isso já é false */
-            },
-            {
-              name: 'email',
-              type: 'varchar',
-              isUnique: true,
-            },
-            {
-              name: 'password',
-              type: 'varchar',
-            },
-            {
-              name: 'created_at',
-              type: 'timestamp',
-              default: 'now()',
-            },
-            {
-              name: 'updated_at',
-              type: 'timestamp',
-              default: 'now()',
-            },
-          ],
-        }),
-      );
-    }
-
-    public async down(queryRunner: QueryRunner): Promise<void> {
-      await queryRunner.dropTable('users');
-    }
-
+  public async down(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.dropTable('users');
+  }
 }

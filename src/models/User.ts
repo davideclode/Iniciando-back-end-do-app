@@ -1,6 +1,12 @@
 // import { uuid } from 'uuidv4';
 // importamos o "Entity" da "typeorm"
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 // A nossa primeira Entidade de AGENDAMENTO. Vamos escrevé-la no formato do CLASSE
 @Entity('users')
@@ -14,6 +20,7 @@ class User {
 
   @Column()
   email: string;
+
   @Column()
   password: string;
 
@@ -22,7 +29,6 @@ class User {
 
   @UpdateDateColumn()
   updated_at: Date;
-
 }
 // Vou dar um export aqui para que esta classe fique disponível externamente
 export default User;

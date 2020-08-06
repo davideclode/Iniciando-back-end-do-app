@@ -24,14 +24,15 @@
     ],
     "rules": {
       "prettier/prettier": "error",
+      "no-console": "off", /* Eu que adicionei isso */
       "class-methods-use-this": "off", /* Linha acrescentada. Desabilitamos o "this" */
-      "@typescript-eslint/camelcase": "off",
+      "camelcase": 0,
       "import/extensions": [
         "error",
         "ignorePackages",
         {
           "ts": "never"
-        },
+        }
       ]
     },
     "settings": {
