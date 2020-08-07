@@ -18,7 +18,6 @@ appointmentsRouter.use(ensureAuthenticated);
 // Rota criada para listar os agendamentos(appointments)
 // Vamos precisar criar um método (all) lá no arquivo "AppointmentsRepository.ts" responsável por fornecer todos os dados do agendamento
 appointmentsRouter.get('/', async (request, response) => {
-  console.log(request.user);
   // Após importar "getCustomRepository" fazemos:
   const appointmentsRepository = getCustomRepository(AppointmentsRepository);
   // Durante a criação da rota de listagem de appointments (GET) percebemos que no momento que nós formos precisar de informação de appointments temos sempre que "conectar" com o repositório (appointmentRepository).
